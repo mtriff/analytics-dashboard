@@ -87,39 +87,40 @@ def get_plot_widget_row(total_monthly_users_by_country_maps: List[figure], total
                                   active_maps = active_maps, 
                                   active_month = active_month, 
                                   total_maps = total_monthly_users_by_country_maps, 
-                                  new_maps = total_new_monthly_users_by_country_maps), 
-                                  code = """
-                                          // Initial setup for shared vars
-                                          // Need to use global vars to share state between multiple widgets
-                                          if (!window.active_maps) {
-                                            window.active_maps = active_maps
-                                          }
-                                          if (!window.active_month) {
-                                            window.active_month = active_month
-                                          }
-                                          if (cb_obj.value !== undefined) {
-                                            // Changing map type displayed
-                                            if (window.active_maps == 0) {
-                                              total_maps[window.active_month].visible = false;
-                                              total_maps[cb_obj.value].visible = true;
-                                            } else if (window.active_maps == 1) {
-                                              new_maps[window.active_month].visible = false;
-                                              new_maps[cb_obj.value].visible = true;
-                                            }
-                                            window.active_month = cb_obj.value;
-                                          } else if (cb_obj.active !== undefined) {
-                                            // Changing month displayed
-                                            if (cb_obj.active == 0) {
-                                              total_maps[window.active_month].visible = true
-                                              new_maps[window.active_month].visible = false;
-                                            } else if (cb_obj.active == 1) {
-                                              new_maps[window.active_month].visible = true; 
-                                              total_maps[window.active_month].visible = false;
-                                            }
-                                            window.active_maps = cb_obj.active;
-                                          }
-                                          """
-                                  )
+                                  new_maps = total_new_monthly_users_by_country_maps
+                                ), 
+                      code = """
+                              // Initial setup for shared vars
+                              // Need to use global vars to share state between multiple widgets
+                              if (!window.active_maps) {
+                                window.active_maps = active_maps
+                              }
+                              if (!window.active_month) {
+                                window.active_month = active_month
+                              }
+                              if (cb_obj.value !== undefined) {
+                                // Changing map type displayed
+                                if (window.active_maps == 0) {
+                                  total_maps[window.active_month].visible = false;
+                                  total_maps[cb_obj.value].visible = true;
+                                } else if (window.active_maps == 1) {
+                                  new_maps[window.active_month].visible = false;
+                                  new_maps[cb_obj.value].visible = true;
+                                }
+                                window.active_month = cb_obj.value;
+                              } else if (cb_obj.active !== undefined) {
+                                // Changing month displayed
+                                if (cb_obj.active == 0) {
+                                  total_maps[window.active_month].visible = true
+                                  new_maps[window.active_month].visible = false;
+                                } else if (cb_obj.active == 1) {
+                                  new_maps[window.active_month].visible = true; 
+                                  total_maps[window.active_month].visible = false;
+                                }
+                                window.active_maps = cb_obj.active;
+                              }
+                              """
+                      )
 
   radiogroup = RadioButtonGroup(labels = ["Total Users", "New Users"], active = active_maps)
   radiogroup.js_on_click(callback)

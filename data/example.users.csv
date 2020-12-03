@@ -1,0 +1,1 @@
+_id,appId,userId,__v,createdAt,devices.0.lastSeen,devices.0._id,devices.0.platform,devices.0.osVersion,devices.0.version,devices.1.lastSeen,devices.1._id,devices.1.platform,devices.1.osVersion,devices.1.version,devices.2.lastSeen,devices.2._id,devices.2.platform,devices.2.osVersion,devices.2.version,props.country,props.locale,props.version,updatedAt
